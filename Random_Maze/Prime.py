@@ -11,6 +11,7 @@ class Maze_Prime:
         self.lst_node = [(i , j) for j in range(self.cols) for i in range(self.rows)]
         self.start = None 
         self.goal = None 
+        
     def set_up(self):
  
         for i in range(self.rows):

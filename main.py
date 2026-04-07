@@ -6,14 +6,18 @@ import matplotlib.pyplot as plt
 from tkinter import messagebox                          
 from Random_Maze.maze_generator import Maze_Gen         
 from Agent.Qlearning import Q_Learning                    
-from Agent.DoubleQlearning import Double_Qlearning      
+from Agent.DoubleQlearning import Double_Qlearning   
+from Agent.MonteCarlo import Monte_Carlo 
+from Agent.Sarsa import SARSA  
+from Agent.Nstep import N_Step
 from Env.maze_space import Maze_Space
-import queue
+import queue 
 
 ''' Main program implement a visualize of the process learning of Agent Q-learning.
     Using tkinter tool GUI to excute it.
     tool tkinter includes:
         Canvas : draw graphic
+        
 '''
 GRID_SIZE = 40
 OBJECT_SIZE = 10
@@ -37,12 +41,21 @@ class MazeGUI:
 
         # config for Agent
         self.gamma = 0.9
-        self.epochs = 10
+        self.episodes = 10
         self.location = None
         self.goal = None 
-        self.average_reward = {'Q_Learning': [], 'Double_Qlearning': []}
+        self.average_reward = {'Q_Learning': [], 
+                               'Double_Qlearning': [], 
+                               'Sarsa': [], 
+                               'Monte_Carlo': [], 
+                               'N_Step': []
+                               }
         self.agent_name = 'Q_Learning'
-        self.set_agent = {'Q_Learning':Q_Learning(self.gamma), 'Double_Qlearning': Double_Qlearning(self.gamma)}
+        self.set_agent = {'Q_Learning':Q_Learning(self.gamma),
+                          'Double_Qlearning': Double_Qlearning(self.gamma), 
+                          'Sarsa': SARSA(self.gamma), 
+                          'Monte_Carlo': Monte_Carlo(self.gamma), 
+                          'N_Step': N_Step(self.gamma)}
         self.agent = self.set_agent[self.agent_name]
         self.env = Maze_Space(self.maze, self.goal)
         self.stop_flag = threading.Event()
@@ -95,7 +108,7 @@ class MazeGUI:
     
         # button Agent Algorithm 
         self.agent_algorithm = ttk.Combobox(master,width=27,textvariable= tk.StringVar(), state= 'readonly')
-        self.agent_algorithm['values'] = ('Q_Learning', 'Double_Qlearning')
+        self.agent_algorithm['values'] = [k for k in self.set_agent.keys()]
         self.agent_algorithm.place(x=110,y = 30 + SPACE_BUTTON*4)
         self.agent_algorithm_button = tk.Button(master,text= 'Agent Name', command=self.update_agent)
         self.agent_algorithm_button.place(x = 10, y = 30 + SPACE_BUTTON*4, width= WIDTH, height= HEIGHT)
@@ -103,7 +116,7 @@ class MazeGUI:
         # button number process training 
         self.num_process = tk.Entry(master)  
         self.num_process.place(x = 150, y = 170 + SPACE_BUTTON*3, width= WIDTH , height= HEIGHT)
-        self.num_button = tk.Button(master, text= 'Num_Process', command= self.config)
+        self.num_button = tk.Button(master, text= 'Num_Process', command= self.set_episodes)
         self.num_button.place(x = 50, y = 170 + SPACE_BUTTON*3 , width= WIDTH, height= HEIGHT)
         
         # button config gamma 
@@ -147,15 +160,17 @@ class MazeGUI:
     def config(self):
         '''  setup config of agent '''
         self.gamma = float(self.gamma_input.get())
-        self.epochs = int(self.num_process.get())
         self.agent.set_config(self.gamma)
 
+    def set_episodes(self):
+        self.episodes = int(self.num_process.get())
+        
     def stop(self):
         ''' stop the process of learning or running  '''  
         self.stop_flag.set()                              
 
     def update_speed(self):
-        ''' Update the speed of learning   '''
+        ''' Update the speed of learning  '''
         self.speed = 1 - self.speed_scale.get()
 
     def update_maze_name(self):
@@ -163,7 +178,7 @@ class MazeGUI:
         self.maze_name = self.algorithm.get()
 
     def update_agent(self):
-        ''' Select algorithm reinforcement learning including Q-learning and Double-Qlearning '''
+        ''' Select algorithm reinforcement learning '''
         self.agent_name = self.agent_algorithm.get()
         self.agent = self.set_agent[self.agent_name]
 
@@ -242,51 +257,45 @@ class MazeGUI:
         self.average_reward[self.agent_name] = []
     
     def train_loop(self):
-        epoch = 0
+        episode = 0
+
         self.stop_flag.clear()
-        while not self.stop_flag.is_set() and epoch < self.epochs:
-            state = self.location
+        while not self.stop_flag.is_set() and episode < self.episodes:
+            state, action = self.location, None 
             x , y = state 
             self.canvas.after(0, self.update_states, (x,y))
             self.canvas.update() 
             avg_reward = 0 
-            episoide = 0
+            step = 0
+
             while not self.stop_flag.is_set():
-                next_state,reward, done = self.agent.learn(state, self.env)
+                next_state, reward, done , infor = self.agent.learn(state, self.env,action = action)
                 avg_reward += reward
-                if done == 'OUT': 
+
+                if infor:
+                    action = infor['next_action']
+                 
+                if done != 'PATH': 
                     state = self.location 
                     x , y = state 
                     self.canvas.after(0, self.update_states, (x,y))
                     self.canvas.update()   
-                    episoide += 1
-                    continue                                           
+                    step += 1
+                    break                                        
                                                                      
                 x, y = next_state                                     
                 self.canvas.after(0, self.update_states, (x,y))          
                 time.sleep(self.speed)
                 self.canvas.update()    
 
-                if done == 'WALL': 
-                    state = self.location
-                    x , y = state 
-                    self.canvas.after(0, self.update_states, (x,y))
-                    self.canvas.update() 
-                    episoide += 1
-                    continue
-
-                if done == 'GOAL': 
-                    episoide += 1
-                    break 
                 # continous 
                 state = next_state
             
             x , y = self.location
             self.canvas.after(0, self.update_states, (x,y))
             self.canvas.update()  
-            if done == 'GOAL':  
-                self.average_reward[self.agent_name].append(avg_reward/(episoide*100))  
-                epoch += 1                                     
+            self.average_reward[self.agent_name].append(avg_reward/(step*100))  
+            episode += 1                                     
         threading.Event().wait(1) 
 
     def run_loop(self):
@@ -325,6 +334,9 @@ class MazeGUI:
         plt.title("Average Reward")
         plt.plot([i for i in range(1,len(self.average_reward['Q_Learning'])+1)],self.average_reward['Q_Learning'], label = 'Q_Learning', color = 'blue')
         plt.plot([i for i in range(1,len(self.average_reward['Double_Qlearning'])+1)],self.average_reward['Double_Qlearning'], label= 'Double_Qlearning', color = 'red')
+        plt.plot([i for i in range(1,len(self.average_reward['Sarsa'])+1)],self.average_reward['Sarsa'], label= 'Sarsa', color = 'yellow')
+        plt.plot([i for i in range(1,len(self.average_reward['Monte_Carlo']) + 1)], self.average_reward['Monte_Carlo'], label = 'Monte_Carlo', color = 'green')
+        plt.plot([i for i in range(1,len(self.average_reward['N_Step']) + 1)], self.average_reward['N_Step'], label = 'N_Step', color = 'gray')
         plt.legend()
         plt.grid(True)
         plt.show()
