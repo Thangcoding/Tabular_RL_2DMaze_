@@ -74,7 +74,7 @@ You can view the slide report here:
 Or preview the slides directly:
 
 <p align="center">
-<iframe src="slides/RL_Tutorial.pdf" width="700" height="450"></iframe>
+<iframe src="Slide_tutorial_Tabular_RL.pdf" width="700" height="450"></iframe>
 </p>
 ---
 
