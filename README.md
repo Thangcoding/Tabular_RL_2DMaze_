@@ -111,7 +111,7 @@ The results provide an intuitive understanding of **how classical RL algorithms 
 ---
 
 # Project Structure
-
+```text
 Tabular_RL_2DMaze
 │
 ├── Agent
@@ -132,3 +132,4 @@ Tabular_RL_2DMaze
 │ └── maze_generator.py # Maze generator interface
 │
 └── main.py # GUI program to run and experiment with algorithms
+```
