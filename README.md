@@ -70,14 +70,7 @@ You can view the slide report here:
     <img src="https://img.shields.io/badge/Open-Slides-blue?style=for-the-badge">
   </a>
 </p>
-
-Or preview the slides directly:
-
-<p align="center">
-<iframe src="Slide_tutorial_Tabular_RL.pdf" width="700" height="450"></iframe>
-</p>
 ---
-
 # 2D Maze Environment
 
 To demonstrate how RL algorithms work, the project uses a **simple 2D Maze environment**.
