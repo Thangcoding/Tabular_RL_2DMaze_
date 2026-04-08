@@ -16,7 +16,7 @@ The goal of this project is to help beginners understand **how reinforcement lea
 
 # Demo
 
-Below is an example of an agent solving the maze after training.
+Below is an example of training an agent to solve the maze.
 
 <p align="center">
   <img src="maze_demo.gif" width="500">
@@ -94,22 +94,26 @@ Several classical tabular reinforcement learning algorithms are implemented:
 
 These implementations help illustrate how different algorithms update value estimates and gradually learn better policies.
 
----
+The project supports random maze generation using two classical algorithms.
 
-# Experiments
+### DFS Maze Generation
 
-Experiments are performed to observe the **learning behavior and convergence of different algorithms** in the maze environment.
+Depth-First Search (DFS) can be used to generate a maze by exploring cells recursively and carving passages between them.
 
-Typical observations include:
-
-- How quickly each algorithm learns
-- Stability of learning curves
-- Differences between Monte Carlo, TD, and planning methods
-
-The results provide an intuitive understanding of **how classical RL algorithms behave in simple environments**.
+<p align="center">
+  <img src="images/dfs_maze.png" width="400">
+</p>
 
 ---
 
+### Prim Maze Generation
+
+Prim's algorithm generates mazes by expanding a frontier of cells and randomly connecting them to the existing maze structure.
+
+<p align="center">
+  <img src="images/prim_maze.png" width="400">
+</p>
+---
 # Project Structure
 ```text
 Tabular_RL_2DMaze
