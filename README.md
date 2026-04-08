@@ -113,7 +113,7 @@ The project supports random maze generation using two classical algorithms.
 Depth-First Search (DFS) can be used to generate a maze by exploring cells recursively and carving passages between them.
 
 <p align="center">
-  <img src="images/dfs_maze.png" width="400">
+  <img src="DFS.png" width="400">
 </p>
 
 ---
@@ -123,9 +123,10 @@ Depth-First Search (DFS) can be used to generate a maze by exploring cells recur
 Prim's algorithm generates mazes by expanding a frontier of cells and randomly connecting them to the existing maze structure.
 
 <p align="center">
-  <img src="images/prim_maze.png" width="400">
+  <img src="Prime.png" width="400">
 </p>
 ---
+
 # Project Structure
 ```text
 Tabular_RL_2DMaze
