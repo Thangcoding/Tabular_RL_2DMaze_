@@ -19,7 +19,7 @@ The goal of this project is to help beginners understand **how reinforcement lea
 Below is an example of an agent solving the maze after training.
 
 <p align="center">
-  <img src="demo/maze_agent.gif" width="500">
+  <img src="maze_demo.gif" width="500">
 </p>
 
 The agent learns a policy that navigates from the start position to the goal while maximizing cumulative reward.
