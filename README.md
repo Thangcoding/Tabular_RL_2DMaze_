@@ -66,7 +66,7 @@ You can view the slide report here:
 📄 **Reinforcement Learning Tutorial**
 
 <p align="center">
-  <a href="slide_Tutorial_RL.pdf">
+  <a href="Slide_tutorial_Tabular_RL.pdf">
     <img src="https://img.shields.io/badge/Open-Slides-blue?style=for-the-badge">
   </a>
 </p>
