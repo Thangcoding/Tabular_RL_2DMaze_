@@ -70,7 +70,9 @@ You can view the slide report here:
     <img src="https://img.shields.io/badge/Open-Slides-blue?style=for-the-badge">
   </a>
 </p>
+
 ---
+
 # 2D Maze Environment
 
 To demonstrate how RL algorithms work, the project uses a **simple 2D Maze environment**.
