@@ -1,64 +1,81 @@
-# Tabular_RL_2DMaze
+# Tabular RL in a 2D Maze
 
 ## Overview
 
 **Tabular_RL_2DMaze** is a small educational project that provides an **introductory overview of Reinforcement Learning (RL)** and demonstrates how classical **tabular RL algorithms** learn in a simple **2D Maze environment**.
 
-The project includes:
+This project combines:
 
-- A **tutorial-style report** summarizing the basic concepts of reinforcement learning.
-- Implementations of several **classical tabular RL algorithms**.
-- Experiments showing the **learning and convergence behavior** of these algorithms in a 2D grid-based maze.
+- 📘 A **tutorial-style slide report** explaining the fundamental ideas of Reinforcement Learning  
+- 🤖 Implementations of several **classical tabular RL algorithms**  
+- 🧪 Experiments showing how agents **learn to solve a maze environment**
 
-The goal of this project is to help beginners understand **how reinforcement learning works in practice**.
+The goal of this project is to provide a **clear and intuitive introduction to reinforcement learning** for beginners.
 
 ---
 
 # Demo
 
-Below is an example of training an agent to solve the maze.
+Below is an example of an RL agent learning to solve the maze.
 
 <p align="center">
-  <img src="maze_demo.gif" width="500">
+  <img src="maze_demo.gif" width="650">
 </p>
 
-The agent learns a policy that navigates from the start position to the goal while maximizing cumulative reward.
+The agent gradually learns a policy that navigates from the **start state to the goal state** while maximizing cumulative reward.
 
 ---
 
 # Reinforcement Learning Tutorial
 
-The first part of this project focuses on studying and summarizing the **fundamental concepts of Reinforcement Learning**.
+A **slide-based tutorial** was created to summarize the core ideas of reinforcement learning.
 
-A slide-based tutorial report was created based on the following materials:
+The tutorial is based on the following references:
 
 - *Reinforcement Learning: An Introduction* — Sutton & Barto  
 - *Algorithms for Reinforcement Learning* — Csaba Szepesvári  
-- Reinforcement Learning lecture slides from **Google DeepMind**
+- Reinforcement Learning lecture materials from **Google DeepMind**
 
-### Topics Covered
+## Topics Covered
 
-The tutorial introduces the main concepts of RL, including:
+The tutorial introduces the key concepts of reinforcement learning:
 
-- Introduction to Reinforcement Learning  
+- Reinforcement Learning fundamentals  
 - Agent–Environment interaction  
-- Markov Decision Process (MDP)  
+- Markov Decision Processes (MDP)  
 - Value functions  
 - Bellman equations  
 
-It also explains several classical learning methods:
+It also explains several important learning methods:
 
 - Dynamic Programming  
 - Monte Carlo methods  
-- Temporal Difference (TD) learning  
+- Temporal Difference learning  
 - Importance Sampling  
 - N-step bootstrapping  
-- Eligibility traces  
+- Eligibility Traces  
 - Exploration vs Exploitation  
-- Basic ideas of planning in RL  
+- Basic planning ideas in reinforcement learning  
 
-The tutorial aims to provide a **clear overview of the main ideas behind reinforcement learning algorithms**.
+---
 
+## Tutorial Slides
+
+You can view the slide report here:
+
+📄 **Reinforcement Learning Tutorial**
+
+<p align="center">
+  <a href="slide_Tutorial_RL.pdf">
+    <img src="https://img.shields.io/badge/Open-Slides-blue?style=for-the-badge">
+  </a>
+</p>
+
+Or preview the slides directly:
+
+<p align="center">
+<iframe src="slides/RL_Tutorial.pdf" width="700" height="450"></iframe>
+</p>
 ---
 
 # 2D Maze Environment
