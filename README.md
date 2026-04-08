@@ -1,1 +1,3 @@
-# Maze-Solving-
+# Tabular_RL_2DMaze 
+
+
