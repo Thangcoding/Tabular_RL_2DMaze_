@@ -112,4 +112,19 @@ The results provide an intuitive understanding of **how classical RL algorithms 
 
 # Project Structure
 
-|___ 
+|______ Agent 
+|   |____ DoubleQlearning.py 
+|   |____ LambdaTrace.py 
+|   |____ MCTS.py
+|   |____ MonteCarlo.py 
+|   |____ Nstep.py 
+|   |____ Qlearning.py 
+|   |____ Sarsa.py
+|_____Env 
+|  |____ maze_space.py (environment 2D maze)
+|_____ Random Maze
+|  |____ DFS.py 
+|  |____ Prime.py 
+|  |____ maze_generator.py 
+|
+\____ main.py (GUI programme, run to experienment algorithm)
