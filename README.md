@@ -150,3 +150,11 @@ Tabular_RL_2DMaze
 │
 └── main.py # GUI program to run and experiment with algorithms
 ```
+--- 
+
+# Running the Project
+
+Run the main program:
+
+```bash
+python main.py
