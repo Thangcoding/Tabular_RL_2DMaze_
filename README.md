@@ -112,19 +112,23 @@ The results provide an intuitive understanding of **how classical RL algorithms 
 
 # Project Structure
 
-|______ Agent 
-|   |____ DoubleQlearning.py 
-|   |____ LambdaTrace.py 
-|   |____ MCTS.py
-|   |____ MonteCarlo.py 
-|   |____ Nstep.py 
-|   |____ Qlearning.py 
-|   |____ Sarsa.py
-|_____Env 
-|  |____ maze_space.py (environment 2D maze)
-|_____ Random Maze
-|  |____ DFS.py 
-|  |____ Prime.py 
-|  |____ maze_generator.py 
-|
-\____ main.py (GUI programme, run to experienment algorithm)
+Tabular_RL_2DMaze
+│
+├── Agent
+│ ├── DoubleQlearning.py
+│ ├── LambdaTrace.py
+│ ├── MCTS.py
+│ ├── MonteCarlo.py
+│ ├── Nstep.py
+│ ├── Qlearning.py
+│ └── Sarsa.py
+│
+├── Env
+│ └── maze_space.py # 2D Maze environment
+│
+├── Random_Maze
+│ ├── DFS.py # Maze generation using DFS
+│ ├── Prime.py # Maze generation using Prim's algorithm
+│ └── maze_generator.py # Maze generator interface
+│
+└── main.py # GUI program to run and experiment with algorithms
